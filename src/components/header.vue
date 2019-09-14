@@ -1,0 +1,81 @@
+<template>
+<div id="header">
+    <div id="header_conten">
+        <!-- 头部log -->
+        <div id="log">
+            <a href="https://www.sonystyle.com.cn/" target="blank">
+                <img src="sony_images/sony-logo.jpg" alt="SONY">
+            </a>
+        </div>
+        <!-- 二级列表,搜索框 -->
+        <div id="header_nav_main">
+            <div id="tbn">
+                <ul>
+                    <li id="list_l1" class="clearfix">
+                        <a href="#">商品分类</a> 
+                        <ul class="fenlei"></ul>
+                    </li>
+                    <li class="clearfix">
+                        <a href="#">网站导航</a>
+                    </li>
+                    <li id="list_serch">
+                        <input type="text" id="serch" placeholder="真无线降噪耳机WF-1000XM3">
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 头部导航栏右侧 -->
+        <div id="header_right">
+            <div id="shopping_car">
+                <div id="shuliang">
+                    <span>0</span>
+                </div>
+            </div>
+            <div id="server">
+                <p>服务与支持</p>
+            </div>
+            <div>
+                <p>My Sony</p>
+            </div>
+            <div id="log_reg">
+                <span>登录</span>    
+                <i>/</i>
+                <span><a href="user_log.html">注册</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+</template>
+<script>
+export default {
+    methods:{
+        add(){
+
+        }
+    },
+    // 组件创建完自动执行
+    created(){
+        var timer = setTimeout(function(){
+            // 为引入的header标签绑定事件
+            $("#log_reg>span:first-child").click(function(){
+            console.log(111)
+
+                $(".backg").addClass("active")
+                $("#login").addClass("active")
+            });
+            $("#login .close").click(function(){
+                $("#login").removeClass("active")
+                $(".backg").removeClass("active")
+            })
+            $("#reg_img").click(function(){
+                $("#login>div:first-child").removeClass("active")
+                $("#login>div:nth-child(2)")
+            })
+        },2000)
+
+    }
+}
+</script>
+<style scoped>
+
+</style>
