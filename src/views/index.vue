@@ -1,6 +1,9 @@
 <template>
     <div>
     <my-header></my-header>
+    <div class="fixed"  v-show="height>=900">
+        <my-header></my-header>
+    </div>
     <!-- 首页轮播图 -->
     <div id="swiper-container">
         <!-- 轮播图整体 -->
@@ -8,16 +11,16 @@
             <!-- 图片轮播 -->
             <div class="carousel-inner h-100">
                 <div class="carousel-item active h-100">
-                    <img class="w-100 h-100" src="sony_images/kv_sel35f18f_xpfb.jpg">
+                    <img class="w-100 h-100" src="../assets/sony_images/kv_sel35f18f_xpfb.jpg">
                 </div>
                 <div class="carousel-item h-100">
-                    <img class="w-100 h-100" src="sony_images/kv_sel1655g_yskq906.jpg">
+                    <img class="w-100 h-100" src="../assets/sony_images/kv_sel1655g_yskq906.jpg">
                 </div>
                 <div class="carousel-item h-100">
-                    <img class="w-100 h-100" src="sony_images/kv_a7rm4_yskq.jpg">
+                    <img class="w-100 h-100" src="../assets/sony_images/kv_a7rm4_yskq.jpg">
                 </div>
                 <div class="carousel-item h-100">
-                    <img class="w-100 h-100" src="sony_images/kv_alpha6600_yskq.jpg" alt="">
+                    <img class="w-100 h-100" src="../assets/sony_images/kv_alpha6600_yskq.jpg" alt="">
                 </div>
             </div>
             <!-- 左右箭头 -->
@@ -67,10 +70,10 @@
                     <div class="carousel" data-ride="carousel">
                         <div class="carousel-inner fu">
                             <div class="carousel-item active">
-                                <img class="my_hover w-100"  src="sony_images/block_a7m3_600703.jpg">
+                                <img class="my_hover w-100"  src="../assets/sony_images/block_a7m3_600703.jpg">
                             </div>
                             <div class="carousel-item">
-                                <img class="my_hover w-100" src="sony_images/block_rx10m4_0906_600703.jpg">
+                                <img class="my_hover w-100" src="../assets/sony_images/block_rx10m4_0906_600703.jpg">
                             </div>
                             <div class="zi">
                                 <p>Alpha 7R IV</p>
@@ -86,10 +89,10 @@
                         <!-- 轮播图片 -->
                         <div class="carousel-inner fu">
                             <div class="carousel-item">
-                                <img class="my_hover w-100" src="sony_images/block_rx10m4_0906_600295.jpg">
+                                <img class="my_hover w-100" src="../assets/sony_images/block_rx10m4_0906_600295.jpg">
                             </div>
                             <div class="carousel-item active">
-                                <img class="my_hover w-100" src="sony_images/block_rx10m4_911_600295.jpg">
+                                <img class="my_hover w-100" src="../assets/sony_images/block_rx10m4_911_600295.jpg">
                             </div>
                             <div class="zi">
                                 <p>黑卡®超长焦旗舰 RX10IV</p>
@@ -100,7 +103,7 @@
                     </div>
                 </div>
                 <div class="mr-2 fu">
-                    <img src="sony_images/block_sel135f18gm_1907_295398.jpg">
+                    <img src="../assets/sony_images/block_sel135f18gm_1907_295398.jpg">
                     <div class="zi">
                         <p>SEL135F18GM</p>
                         <h3>大光圈<br>远摄定焦<br>G大师镜头</h3>
@@ -108,26 +111,26 @@
                     </div>
                 </div>
                 <div class="mb-2 fu">
-                    <img class="r-12_b-10" src="sony_images/block_AX45.png">
+                    <img class="r-12_b-10" src="../assets/sony_images/block_AX45.png">
                     <div class="zi">
                         <p style="color: #666666;">4K数码摄像机 FDR-AX45</p>
                         <h3 style="color: #333333">快捷编辑 轻松分享</h3>
                         <span>RMB 5,880</span>
                         <div class="d-img">
-                            <img src="sony_images/zeiss_40x40.png" alt="">
-                            <img src="sony_images/4k_40x40.png" alt="">
+                            <img src="../assets/sony_images/zeiss_40x40.png" alt="">
+                            <img src="../assets/sony_images/4k_40x40.png" alt="">
                         </div>
                     </div>
                 </div>
                 <div class="fu">
-                    <img src="sony_images/block_rx100m5a_911_295194.jpg">
+                    <img src="../assets/sony_images/block_rx100m5a_911_295194.jpg">
                     <div class="zi" style="top:30px;">
                         <p style="color: #666666;">4K黑卡® RX100M5A</p>
                         <h3 style="color:#333333;">高性价比的Vlog利器</h3>
                         <span>RMB 5,399 起</span>
                         <div class="d-img">
-                            <img src="sony_images/zeiss_40x40.png" alt="">
-                            <img src="sony_images/1inch_40x40.png" alt="">
+                            <img src="../assets/sony_images/zeiss_40x40.png" alt="">
+                            <img src="../assets/sony_images/1inch_40x40.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -135,10 +138,10 @@
             <!-- 商场右区域 -->
             <div class="MainBlock_right pl-1">
                 <div class="mr-2 mb-2">
-                    <img src="sony_images/block_a9_ver5_295398.jpg">
+                    <img src="../assets/sony_images/block_a9_ver5_295398.jpg">
                 </div>
                 <div class="mb-2 fu">
-                    <img src="sony_images/block_rx100m7_911_295398.jpg">
+                    <img src="../assets/sony_images/block_rx100m7_911_295398.jpg">
                     <div class="zi">
                         <p>新一代旗舰黑卡® RX100 VII</p>
                         <h3>“口袋中的α9“</h3>
@@ -146,29 +149,29 @@
                     </div>
                 </div>
                 <div class="mr-2 fu mb-2">
-                    <img src="sony_images/block_a7m3_295294.jpg">
+                    <img src="../assets/sony_images/block_a7m3_295294.jpg">
                     <div class="zi">
                         <p>Alpha 7  III</p>
                         <h3>全画幅<br>新基准</h3>
                         <span>RMB 13,699 起</span>
                         <div class="d-img">
-                            <img src="sony_images/fullframe_40x40.png" alt="">
+                            <img src="../assets/sony_images/fullframe_40x40.png" alt="">
                         </div>
                     </div>
                 </div>
                 <div class="mb-2 fu">
-                    <img src="sony_images/block_a6400l_0906_295294.jpg">
+                    <img src="../assets/sony_images/block_a6400l_0906_295294.jpg">
                     <div class="zi">
                         <p style="color:#666666">Alpha 6400</p>
                         <h3 style="color:#333333;">轻松解锁<br>VLOG新玩法</h3>
                         <span>RMB 7,099</span>
                         <div class="d-img">
-                            <img src="sony_images/aps_c_40x40.png" alt="">
+                            <img src="../assets/sony_images/aps_c_40x40.png" alt="">
                         </div>
                     </div>
                 </div>
                 <div class="fu">
-                    <img src="sony_images/block_rx100m7g_600703.jpg">
+                    <img src="../assets/sony_images/block_rx100m7g_600703.jpg">
                     <div class="zi">
                         <p style="color:#666666">新一代旗舰黑卡® RX100M7</p>
                         <h3 style="color:#333333;">新增实时追踪对焦<br>及麦克风接口</h3>
@@ -216,11 +219,11 @@
             <div class="MainBlock_left pr-1">
                 <!-- 竖着第一张图片 -->
                 <div class="mb-2 w-100">
-                    <img src="sony_images/block_wf_1000xm3_0723_600703.jpg">
+                    <img src="../assets/sony_images/block_wf_1000xm3_0723_600703.jpg">
                 </div>
                 <!-- 左，竖第二张 -->
                 <div class="mb-2 w-100 fu">
-                    <img src="sony_images/srs_xb12_19082_600295.jpg">
+                    <img src="../assets/sony_images/srs_xb12_19082_600295.jpg">
                     <div class="zi">
                         <p>SRS-XB12</p>
                         <h3>小巧便携 随身享受</h3>
@@ -228,7 +231,7 @@
                     </div>
                 </div>
                 <div class="mr-2 fu">
-                    <img src="sony_images/block_nw_zx300_295398 (1).jpg">
+                    <img src="../assets/sony_images/block_nw_zx300_295398 (1).jpg">
                     <div class="zi">
                         <p style="color:#666666;">NW-ZX300A</p>
                         <h3 style="color:#333333;">数字音乐播放器</h3>
@@ -236,25 +239,25 @@
                     </div>
                 </div>
                 <div class="mb-2 fu">
-                    <img src="sony_images/block_nw_x99_295194.jpg">
+                    <img src="../assets/sony_images/block_nw_x99_295194.jpg">
                     <div class="zi">
                         <p style="color:#666666;">SRS-X99</p>
                         <h3 style="color:#333333;">高解析度无线扬声器</h3>
                         <span>RMB 4,999</span>
                         <div class="d-img">
-                            <img src="sony_images/hires_40x40.png" alt="">
+                            <img src="../assets/sony_images/hires_40x40.png" alt="">
                         </div>
                     </div>
                 </div>
                 <div class="fu">
-                    <img src="sony_images/block_xba_n3bp_295194.jpg">
+                    <img src="../assets/sony_images/block_xba_n3bp_295194.jpg">
                     <div class="zi" style="top:22px;">
                         <p style="color:#666666;">XBA-N3BP</p>
                         <h3 style="color:#333333;">高解析度<br>立体声耳机</h3>
                         <span>RMB 2,599</span>
                         <div class="d-img">
-                            <img src="sony_images/hires_40x40.png" alt="">
-                            <img src="sony_images/44mm-40x40.png" alt="">
+                            <img src="../assets/sony_images/hires_40x40.png" alt="">
+                            <img src="../assets/sony_images/44mm-40x40.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -263,30 +266,30 @@
             <div class="MainBlock_right pl-1">
                 <div class="mr-2 mb-2">
                     <div class="fu mb-2">
-                        <img style="transition:1s;" src="sony_images/block_nw_a55_green.jpg">
+                        <img style="transition:1s;" src="../assets/sony_images/block_nw_a55_green.jpg">
                         <div class="zi" style="top:22px;left:22px;">
                             <p>NW-A55</p>
                             <h3>高解析度<br>音乐播放器</h3>
                             <span>RMB 1,199</span>
                             <div class="d-img">
-                                <img src="sony_images/hires_40x40.png" alt="">
+                                <img src="../assets/sony_images/hires_40x40.png" alt="">
                             </div>
                         </div>
                     </div>
                     <div class="fu">
-                        <img style="transition:1s;" src="sony_images/block_wh_h900n_blue_295194.jpg">
+                        <img style="transition:1s;" src="../assets/sony_images/block_wh_h900n_blue_295194.jpg">
                         <div class="zi" style="top:22px;left:22px;">
                             <p>WH-H900N</p>
                             <h3>无线降噪<br>立体声耳机</h3>
                             <span>RMB 2,299</span>
                             <div class="d-img">
-                                <img src="sony_images/hires_40x40.png" alt="">
+                                <img src="../assets/sony_images/hires_40x40.png" alt="">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="mb-2 fu">
-                    <img src="sony_images/block_wi_1000x_1908_295398.jpg">
+                    <img src="../assets/sony_images/block_wi_1000x_1908_295398.jpg">
                     <div class="zi">
                         <p style="color:#666666;">WI-1000X</p>
                         <h3 style="color:#333333;">降噪静界 智能聆听</h3>
@@ -294,18 +297,18 @@
                     </div>
                 </div>
                 <div class="mr-2 fu mb-2">
-                    <img src="sony_images/block_ier_z1r_295295.jpg">
+                    <img src="../assets/sony_images/block_ier_z1r_295295.jpg">
                     <div class="zi">
                         <p>IER-Z1R</p>
                         <h3>旗舰入耳式立体声耳机</h3>
                         <span>RMB 12,999</span>
                         <div class="d-img">
-                            <img src="sony_images/hires_40x40.png" alt="">
+                            <img src="../assets/sony_images/hires_40x40.png" alt="">
                         </div>
                     </div>
                 </div>
                 <div class="mb-2 fu">
-                    <img src="sony_images/block_nw_wm1a_295295.jpg">
+                    <img src="../assets/sony_images/block_nw_wm1a_295295.jpg">
                     <div class="zi" style="top:22px;left:22px;">
                         <p style="color:#666666;">NW-WM1A</p>
                         <h3 style="color:#333333;">高解析度<br>音乐播放器</h3>
@@ -313,7 +316,7 @@
                     </div>
                 </div>
                 <div>
-                    <img src="sony_images/block_wh_1000xm3_1908_600703.jpg">
+                    <img src="../assets/sony_images/block_wh_1000xm3_1908_600703.jpg">
                 </div>
             </div>
         </div>
@@ -347,10 +350,10 @@
         <div class="login_zones active pb-3">
             <div class="clearfix">
                 <div class="w-9 clearfix float-left">
-                    <img class="float-left w-50" src="sony_images/login_btn_01.jpg" alt="">
-                    <img id="reg_img" class="float-left w-50 cursor" src="sony_images/login_btn_02.jpg" alt="">
+                    <img class="float-left w-50" src="../assets/sony_images/login_btn_01.jpg" alt="">
+                    <img id="reg_img" class="float-left w-50 cursor" src="../assets/sony_images/login_btn_02.jpg" alt="">
                 </div>
-                <img class="close float-left" src="sony_images/close228.jpg" alt="">
+                <img class="close float-left" src="../assets/sony_images/close228.jpg" alt="">
             </div>
             <div class="pads">
                 <div class="clearfix">
@@ -379,7 +382,23 @@
 </template>
 <script>
 export default {
-
+    data(){
+        return {
+            height:0,
+            sss:true
+        }
+    },
+    methods:{
+        
+    },
+    mounted(){
+        // var sss = 0
+        // this.sss = false
+        this.height = document.body.scrollTop||document.documentElement.scrollTop;
+        window.onscroll =()=>{
+            this.height = document.body.scrollTop||document.documentElement.scrollTop;
+        }
+    }
 }
 </script>
 <style>

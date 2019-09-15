@@ -53,6 +53,9 @@ body{
 .ml280{
     margin-left: 280px;
 }
+.nav ul{
+    background:#fff;
+}
 .nav ul li{
     float:left;
     height:68px;
@@ -89,6 +92,7 @@ body{
     border-bottom:1px solid #36b4e7;
     color:#42759d;
     text-align: center;
+    background:transparent;
 }
 /* 表单样式 */
 .ipt{
