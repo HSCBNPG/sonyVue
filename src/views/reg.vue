@@ -4,7 +4,7 @@
 		<div class="nav">
 			<div class="w1210">
 				<a href="javascript:;" class="d-block float-left">
-					<img src="sony_images/club_logo.jpg" alt="">
+					<img src="../assets/sony_images/club_logo.jpg" alt="">
 				</a>
 				<ul class="float-left ml280">
 					<li><a href="javascript:;">会员权益</a></li>
@@ -13,7 +13,7 @@
 					<li><a href="javascript:;">我的账户</a></li>
 				</ul>
 				<a href="javascript:;" class="d-block float-right">
-					<img src="sony_images/mysony_logo.jpg" alt="">
+					<img src="../assets/sony_images/mysony_logo.jpg" alt="">
 				</a>
 			</div>
 		</div>
@@ -71,16 +71,16 @@
 				<!-- 登录区域右侧图片 -->
 				<div class="float-left pl-4 r-pho">
 					<a href="javascript:;" class="d-block float-left mr-2 mb-10">
-						<img src="sony_images/apho24_385x258.jpg" alt="">
+						<img src="../assets/sony_images/apho24_385x258.jpg" alt="">
 					</a>
 					<a href="javascript:;" class="d-block float-left mr-2 mb-10">
-						<img src="sony_images/top_huashu_0724.jpg" alt="">
+						<img src="../assets/sony_images/top_huashu_0724.jpg" alt="">
 					</a>
 					<a href="javascript:;" class="d-block float-left mb-10">
-						<img src="sony_images/top_fuli.jpg" alt="">
+						<img src="../assets/sony_images/top_fuli.jpg" alt="">
 					</a>
 					<a href="javascript:;" class="d-block float-left">
-						<img src="sony_images/top_msdp_837x258.jpg" alt="">
+						<img src="../assets/sony_images/top_msdp_837x258.jpg" alt="">
 					</a>
 					
 				</div>
@@ -98,27 +98,27 @@
 					<div>
 					<div>
 						<a href="javascript:;" class="d-block">
-							<img class="a-h_border" src="sony_images/tequan_huiyuanjia.jpg" alt="">
+							<img class="a-h_border" src="../assets/sony_images/tequan_huiyuanjia.jpg" alt="">
 						</a>
 					</div>
 					<div>
 						<a href="javascript:;" class="d-block">
-							<img class="a-h_border" src="sony_images/tequan_yanbao.jpg" alt="">
+							<img class="a-h_border" src="../assets/sony_images/tequan_yanbao.jpg" alt="">
 						</a>
 					</div>
 					<div>
 						<a href="javascript:;" class="d-block">
-							<img  class="a-h_border" src="sony_images/tequan_chengzhangzhi.jpg" alt="">
+							<img  class="a-h_border" src="../assets/sony_images/tequan_chengzhangzhi.jpg" alt="">
 						</a>
 					</div>
 					<div>
 						<a href="javascript:;" class="d-block">
-							<img class="a-h_border" src="sony_images/tequan_zhucefuli.jpg" alt="">
+							<img class="a-h_border" src="../assets/sony_images/tequan_zhucefuli.jpg" alt="">
 						</a>
 					</div>
 					<div>
 						<a href="javascript:;" class="d-block">
-							<img class="a-h_border" src="sony_images/tequan_shenghuo.jpg" alt="">
+							<img class="a-h_border" src="../assets/sony_images/tequan_shenghuo.jpg" alt="">
 						</a>	
 					</div>
 					</div>
@@ -127,21 +127,21 @@
 			</div>
 			<!-- 最新活动 -->
 			<div class="New-activity w1210">
-				<h3><img src="sony_images/icon_camera.png" alt="" style="vertical-align:text-top">最新活动</h3>
+				<h3><img src="../assets/sony_images/icon_camera.png" alt="" style="vertical-align:text-top">最新活动</h3>
 				<div class="clearfix mt-5 mb-3">
 					<!-- 左 -->
-					<a href="javascript:;" class="float-left d-block modal-open mr-2 a-hover"><img src="sony_images/campaign740_600x703.jpg" alt=""></a>
+					<a href="javascript:;" class="float-left d-block modal-open mr-2 a-hover"><img src="../assets/sony_images/campaign740_600x703.jpg" alt=""></a>
 					<!-- 右 -->
 					<div class="clearfix float-left w-600">
 						<!-- 右上 -->
 						<div class="clearfix mb-2 ">
-							<a href="javascript:;" class="float-left d-block modal-open mr-2 a-hover"><img src="sony_images/campaign719_295x398.jpg" alt=""></a>
-							<a href="javascript:;" class="float-left d-block modal-open mb-2 a-hover"><img src="sony_images/hd_bravia_zc.jpg" alt=""></a>
-							<a href="javascript:;" class="float-left d-block modal-open a-hover"><img src="sony_images/hd_yanbao.jpg" alt=""></a>
+							<a href="javascript:;" class="float-left d-block modal-open mr-2 a-hover"><img src="../assets/sony_images/campaign719_295x398.jpg" alt=""></a>
+							<a href="javascript:;" class="float-left d-block modal-open mb-2 a-hover"><img src="../assets/sony_images/hd_bravia_zc.jpg" alt=""></a>
+							<a href="javascript:;" class="float-left d-block modal-open a-hover"><img src="../assets/sony_images/hd_yanbao.jpg" alt=""></a>
 						</div>
 						<!-- 右下 -->
-						<a href="javascript:;" class="float-left d-block modal-open mr-2 a-hover"><img src="sony_images/hd_lecture.jpg" alt=""></a>
-						<a href="javascript:;" class="float-left d-block modal-open a-hover"><img src="sony_images/lvzuan_banner_190604.jpg" alt=""></a>
+						<a href="javascript:;" class="float-left d-block modal-open mr-2 a-hover"><img src="../assets/sony_images/hd_lecture.jpg" alt=""></a>
+						<a href="javascript:;" class="float-left d-block modal-open a-hover"><img src="../assets/sony_images/lvzuan_banner_190604.jpg" alt=""></a>
 					</div>
 				</div>
 			</div>
@@ -150,21 +150,25 @@
 		<div id="acafe">
 			<!-- 标题 -->
 			<div class="acafe_title text-center">
-				<img src="sony_images/acafe.png" alt="">
+				<img src="../assets/sony_images/acafe.png" alt="">
 				<div class="title_line"></div>
 			</div>
 			<!-- 图片展示区 -->
 			<div class="w1210 clearfix">
-				<div class="float-left mr-2 mb-2"><a href="javascript:;" class="d-block"><img src="sony_images/mysony_acafe_banner_01.jpg" alt=""></a></div>
-				<div class="float-left mb-2"><a href="javascript:;" class="d-block"><img src="sony_images/mysony_acafe_banner_shipin_190429.jpg" alt=""></a></div>
-				<div class="float-left mr-2"><a href="javascript:;" class="d-block"><img src="sony_images/campaign740_mysony_acafe_banner.jpg" alt=""></a></div>
-				<div class="float-left"><a href="javascript:;" class="d-block"><img src="sony_images/mysony_acafe_banner_youxuan.jpg" alt=""></a></div>
+				<div class="float-left mr-2 mb-2"><a href="javascript:;" class="d-block"><img src="../assets/sony_images/mysony_acafe_banner_01.jpg" alt=""></a></div>
+				<div class="float-left mb-2"><a href="javascript:;" class="d-block"><img src="../assets/sony_images/mysony_acafe_banner_shipin_190429.jpg" alt=""></a></div>
+				<div class="float-left mr-2"><a href="javascript:;" class="d-block"><img src="../assets/sony_images/campaign740_mysony_acafe_banner.jpg" alt=""></a></div>
+				<div class="float-left"><a href="javascript:;" class="d-block"><img src="../assets/sony_images/mysony_acafe_banner_youxuan.jpg" alt=""></a></div>
 			</div>
 		</div>
     </div>
 </template>
 <style>
     @import url("../assets/css/reg.css");
+	/* ::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+} */
 </style>
 <script>
 export default {
