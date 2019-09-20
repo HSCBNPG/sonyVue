@@ -7,6 +7,17 @@
             <div class="daohang">
                 <img src="../assets/sony_images/header.jpg" alt="">
             </div>
+            <!-- 导航菜单固定定位 -->
+            <div class="menu" :style="top == 0?'color:#fff;':'color:#000;'">
+                MENU &nbsp;<img v-show="top == 0" src="../assets/sony_images/menu0.png" alt="">
+                <img v-show="top == 1 || top == 2" src="../assets/sony_images/menu1.png" alt="">
+            </div>
+            <!-- 导航标题 -->
+            <ul class="menushow" :style="top == 1||top == 2?'color:#000;':''">
+                <li v-show="top == 0">首页</li>
+                <li v-show="top == 1">黑卡家族</li>
+                <li v-show="top == 2">黑卡优势</li>
+            </ul>
             <!-- 第一页小页面 相对定位-->
             <div class="page page1">
                 <!-- 大图列表 绝对定位 -->
@@ -118,6 +129,41 @@
     </div>
 </template>
 <style scoped>
+    /* menushow */
+    .menushow{
+        border-bottom:1px solid;
+        background: transparent;
+        width: 2.3vw;
+        position:fixed;
+        right: 2%;
+        top:8%;
+        z-index: 110;
+        line-height: 2.1em;
+        color: #fff;
+        padding: .8vw 0vw;
+    }
+    .menushow1{
+        color: #000;
+    }
+    .menushow>li{
+        line-height: inherit;
+        font-size: 1vw;
+        color:inherit;
+    }
+    /* 菜单开关 */
+    .menu{
+        position: fixed;
+        right: 2%;
+        top:3%;
+        width: 6%;
+        z-index: 110;
+        font-size: 1.05vw;
+        color:#ffffff;
+        cursor: pointer;
+    }
+    .menu>img{
+        width: 35%;
+    }
     /* 导航 */
     .daohang{
         position: fixed;
@@ -125,15 +171,16 @@
         height: 8%;
         top:0px;
         left: 0px;
-        z-index: 999999;
+        z-index: 100;
         display: flex;
         justify-content: center;
     }
-    .daohang:hover img{
+    .daohang:hover>img{
         top: 0%;
     }
-    .daohang img{
+    .daohang>img{
         position: absolute;
+        width: 100%;
         height: 100%;
         top: -100%;
         transition: all .3s
@@ -161,7 +208,6 @@
         height:3000px;
         position: relative;
         transition: all .7s;
-        /* top:-200vh; */
     }
     .page{
         width:100%;
@@ -201,7 +247,6 @@
         height: auto;
         bottom: 0px;
         opacity: 1;
-        /* display: none; */
         align-items: flex-end;
     }
     .box3{
@@ -411,6 +456,8 @@ export default {
         }
     },
     methods:{
+        // 菜单点击事件
+        
         // 定时器
         timer(){
             this.timerr = setInterval(()=>{
