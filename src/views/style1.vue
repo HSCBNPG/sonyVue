@@ -3,12 +3,23 @@
     <div class="cont">
         <!-- 超大页面 -->
         <div class="main" :style="top == 0?'top:0vh':top == 1?'top:-100vh':top == 2?'top:-200vh':'top:0vh'">
-            <!-- 导航固定定位 -->
+            <!-- 隐藏logo固定定位 -->
             <div class="daohang">
                 <img src="../assets/sony_images/header.jpg" alt="">
             </div>
-            <!-- 导航菜单固定定位 -->
-            <div class="menu" :style="top == 0?'color:#fff;':'color:#000;'">
+            <!-- 隐藏导航菜单 -->
+            <div class="daohangMenu" :style="m?'top:0px;':''">
+                <div @click="changePage" @mouseenter="menuHover" data-left="1"><img src="../assets/sony_images/tMenu_icon01.png" alt="">&nbsp;首页</div>
+                <div @click="changePage" @mouseenter="menuHover" data-left="2"><img src="../assets/sony_images/tMenu_icon02.png" alt="">&nbsp;黑卡家族</div>
+                <div @click="changePage" @mouseenter="menuHover" data-left="3"><img src="../assets/sony_images/tMenu_icon03.png" alt="">&nbsp;黑卡优势</div>
+                <div @click="changePage" @mouseenter="menuHover" data-left="4"><img src="../assets/sony_images/tMenu_icon04.png" alt="">&nbsp;实拍欣赏</div>
+                <div @click="changePage" @mouseenter="menuHover" data-left="5"><img src="../assets/sony_images/tMenu_icon05.png" alt="">&nbsp;影响课堂</div>
+                <img @click="menuButton(0,$event)" @mouseenter="hoverOff" @mouseleave="hoverOn" src="../assets/sony_images/Off1.png" alt="">
+                            <!-- #关 -->
+                <span :class="spanHover"></span>
+            </div>
+            <!-- 导航菜单开关按钮固定定位  #开 -->
+            <div @click="menuButton(1)" class="menu" :style="top == 0?'color:#fff;':'color:#000;'">
                 MENU &nbsp;<img v-show="top == 0" src="../assets/sony_images/menu0.png" alt="">
                 <img v-show="top == 1 || top == 2" src="../assets/sony_images/menu1.png" alt="">
             </div>
@@ -129,7 +140,54 @@
     </div>
 </template>
 <style scoped>
-    /* menushow */
+    /* 导航菜单 */
+    .daohangMenu{
+        position: fixed;
+        top:-8%;
+        left: 0px;
+        width: 100%;
+        height: 8%;
+        background: #000;
+        display: flex;
+        align-items: center;
+        z-index: 119;
+        transition: all .4s;
+        cursor: pointer;
+    }
+    .daohangMenu>div{
+        width: 18.7%;
+        height: 40%;
+        display: flex;
+        font-size: 1.4em;
+        color:#ccc;
+        align-items: center;
+        justify-content: center;
+        border-right:1px solid #575757;
+    }
+    .daohangMenu>div>img{
+        height: 85%;
+    }
+    .daohangMenu>img{
+        display:block;
+        height: 40%;
+        margin:0 auto;
+        transition: all 1s;
+    }
+    .daohangMenu>span{
+        position:absolute;
+        width: 18.7%;
+        background:#e92124;
+        height:2px;
+        top:85%;
+        left:0%;
+        transition: all .3s;
+    }
+    .left1{left:0% !important;}
+    .left2{left:18.7% !important;}
+    .left3{left:37.4% !important;}
+    .left4{left:56.1% !important;}
+    .left5{left:74.8% !important;}
+    /* 导航菜单开关 */
     .menushow{
         border-bottom:1px solid;
         background: transparent;
@@ -368,7 +426,6 @@
     .contul3{
         width: 83%;
         height: 100%;
-        border:1px solid red;
         background:transparent;
         margin: 0 auto;
         transform: translateX(2.8%);
@@ -452,12 +509,59 @@ export default {
         return {
             a : 1,
             top : 0,
-            timerr : null
+            timerr : null,
+            m:false,
+            spanHover:{
+                left1:false,
+                left2:false,
+                left3:false,
+                left4:false,
+                left5:false
+            },
+            // 函数：传入参数更改菜单底部span位置
+            qiehuan(q){
+                var span = this.spanHover
+                for(var key in span){
+                    span[key] = false;   //遍历所有属性值并设为false
+                    // 截取属性的最后一个数字,如果和元素绑定数据相同,让此属性为true
+                    if(/[0-9]$/.exec(key)[0] == q){    
+                        span[key] = true;
+                    }
+                }
+            }
         }
     },
     methods:{
-        // 菜单点击事件
-        
+        // 点击菜单切换页面事件
+        changePage(e){
+            var p = e.target.dataset.left;
+            this.top = p-1;
+        },
+        // 菜单鼠标移入事件切换菜单
+        menuHover(e){
+            var a = e.target.dataset.left;
+            this.qiehuan(a)
+        },
+        // 菜单开关点击事件  0:关  1:开
+        menuButton(n,e){
+            function abc(e,v){
+                e.style.transform = "rotate(360deg)";
+                setTimeout(()=>{
+                    e.style.transform = "rotate(0deg)";
+                },700)
+                setTimeout(()=>{
+                    v.m=false;
+                },400)                
+            }
+            n ? this.m=true : abc(e.target,this)
+            this.qiehuan(this.top+1)
+        },
+        hoverOff(e){
+            e.target.style.transform = "rotate(-90deg)";
+        },
+        hoverOn(e){
+            e.target.style.transform = "rotate(0deg)";
+        },        
         // 定时器
         timer(){
             this.timerr = setInterval(()=>{
@@ -504,10 +608,10 @@ export default {
                     }
                     // 如果当前在前三个图片
                     if(this.a < 4){
+                        // 清除原定时器启动新的定时器
                         clearInterval(this.timerr)
                         // a.启动定时器
                         this.timer()
-                        // this.timer = null;
                         this.a++
                     }
                 }else
@@ -521,6 +625,8 @@ export default {
                 }
             }
 
+            // 一次滚动后判断当前页面在第几页切换导航栏菜单底部边框
+            this.qiehuan(this.top+1)
             // ——————任务结束—————
             // 0.2配置滚轮事件
             setTimeout(()=>{
