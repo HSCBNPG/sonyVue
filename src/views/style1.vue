@@ -570,7 +570,7 @@ export default {
                 }else{
                     this.a = 1
                 }
-            },2400)
+            },2500)
         },
         // 滚轮滚动事件
         gundong(e){
@@ -631,7 +631,7 @@ export default {
             // 0.2配置滚轮事件
             setTimeout(()=>{
                 window.onmousewheel = this.gundong;
-            },180)
+            },300)
         },
         // 鼠标移入事件
         yiru(num){
