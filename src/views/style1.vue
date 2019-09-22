@@ -2,7 +2,7 @@
     <!-- 整体页面 overfloe:hidden-->
     <div class="cont">
         <!-- 超大页面 -->
-        <div class="main" :style="top == 0?'top:0vh':top == 1?'top:-100vh':top == 2?'top:-200vh':'top:0vh'">
+        <div class="main" :style="top == 0?'top:0vh':top == 1?'top:-100vh':top == 2?'top:-200vh':top == 3?'top:-300vh':top == 4?'top:-400vh':''">
             <!-- 隐藏logo固定定位 -->
             <div class="daohang">
                 <img src="../assets/sony_images/header.jpg" alt="">
@@ -136,10 +136,127 @@
                     </div>
                 </div>
             </div>
+            <!-- 第四页 -->
+            <div class="page">
+
+            </div>
+            <!-- 第五页 -->
+            <div class="page">
+                <!-- 弹性布局 -->
+                <div class="wu">
+                    <!-- 背景图片 -->
+                    <div class="content5">
+                        <div>
+                            <!-- 导航 -->
+                            <ul class="cards">
+                                <li>RX100系列</li>
+                                <li>RX10系列</li>
+                                <li>RX1系列</li>
+                                <li>RX0系列</li>
+                            </ul>
+                            <!-- 图片 -->
+                            <div id="a" class="images">
+                                <div id="b">
+                                    <img src="../assets/sony_images/az_b01.jpg" alt="">
+                                    <img src="../assets/sony_images/az_s02.jpg" alt="">
+                                    <img src="../assets/sony_images/az_s03.jpg" alt="">
+                                    <img src="../assets/sony_images/az_s03.jpg" alt="">
+                                    <img src="../assets/sony_images/az_s03.jpg" alt="">
+                                    <img src="../assets/sony_images/az_s03.jpg" alt="">
+                                    <img src="../assets/sony_images/az_s03.jpg" alt="">
+                                    <img src="../assets/sony_images/az_s03.jpg" alt="">
+                                    <img src="../assets/sony_images/hyk_s03.jpg" alt="">
+                                    <img src="../assets/sony_images/az_s03.jpg" alt="">
+                                    <img src="../assets/sony_images/az_s03.jpg" alt="">
+                                    <img src="../assets/sony_images/az_s03.jpg" alt="">
+                                    <img src="../assets/sony_images/az_s03.jpg" alt="">
+                                    <img src="../assets/sony_images/wz_s01.jpg" alt="">
+                                    <img src="../assets/sony_images/az_s03.jpg" alt="">
+                                    <img src="../assets/sony_images/az_s03.jpg" alt="">
+                                    <img src="../assets/sony_images/az_s03.jpg" alt="">
+                                    <img src="../assets/sony_images/az_s03.jpg" alt="">
+                                    <img src="../assets/sony_images/az_s03.jpg" alt="">
+                                    <img src="../assets/sony_images/az_s03.jpg" alt="">
+                                </div>
+                            </div>
+                            <!-- 滚动条 -->
+                            <div class="tiao">
+                                <span :style="'top:'+tiao+'px;'"></span>
+                            </div>
+                        </div>
+                    </div>                  
+                </div>
+            </div>
         </div>
     </div>
 </template>
 <style scoped>
+    /* 第五页 */
+    .wu{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    .content5{
+        width: 100%;
+        height: 56.25vw;
+        background: url("../assets/sony_images/index_sample.jpg") no-repeat;
+        background-size:100%;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .content5>div{
+        width: 77%;
+        border: 1px solid red;
+        height: 71.5%;
+        box-sizing: border-box;
+        transform: translateY(6%);
+        transition: relative;
+    }
+    .cards{
+        background:transparent;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 10%;
+    }
+    .cards>li{
+        font-size: 1.3em;
+        color:white;
+    }
+    .images{
+        width: 100%;
+        height: 90%;
+        overflow: auto;
+    }
+    .images>div{
+
+    }
+    .images::-webkit-scrollbar{
+        width: 0px;
+    }
+    .images>div>img{
+        width: 25%;
+    }
+    /* 滑动条 */
+    .tiao{
+        width: 1px;
+        height: 100%;
+        position: absolute;
+        right: -30px;
+        background: red;
+        top:0px;
+    }
+    .tiao>span{
+        position: absolute;
+        background: blue;
+        display: block;
+        width: 20px;
+        height: 20px;
+        transform: translateX(-50%);
+    }
     /* 导航菜单 */
     .daohangMenu{
         position: fixed;
@@ -528,6 +645,13 @@ export default {
                         span[key] = true;
                     }
                 }
+            },
+            tiao:50,
+            v:null,   //初始距离
+            i:null,    //移动后距离
+            tiao2(){
+                console.log(this.top);
+                this.v = $("#b")[0].getBoundingClientRect().y
             }
         }
     },
@@ -536,6 +660,9 @@ export default {
         changePage(e){
             var p = e.target.dataset.left;
             this.top = p-1;
+            if(this.top == 4){
+                this.tiao2()
+            }
         },
         // 菜单鼠标移入事件切换菜单
         menuHover(e){
@@ -576,7 +703,7 @@ export default {
         gundong(e){
             // 0.1配置滚轮事件
             window.onmousewheel = null;
-            console.log(e.wheelDelta) //120为向上，-120为向下
+            // console.log(e.wheelDelta) //120为向上，-120为向下
 
             // —————任务开始—————
             // 1.判断是向上滚动还是向下滚动
@@ -592,12 +719,21 @@ export default {
                     }
                 }else{
                     // 6.不在第一页内执行的操作
-                    if(this.top>0){
+                    // 如果在第五页执行
+                    if(this.top==4){
+                        if(this.tiao == 0){
+                            this.top--
+                        }else{
+                            
+                            // console.log($("#a")[0].getBoundingClientRect())
+                            // console.log(this.v)
+                        }
+                    }else{
                         this.top--
                     }
                 }
             }
-            // ##向上滚动触发
+            // ##向下滚动触发
             else{
                 // 3.向下滚动所执行的操作
                 // 如果当前在第一页
@@ -621,12 +757,24 @@ export default {
                 }else
                 // 如果当前在第三页
                 if(this.top == 2){
-                    
+                    this.top++
+                }else
+                // 如果当前在第四页
+                if(this.top == 3){
+                    this.top++
+                }else 
+                // 如果当前在第五页
+                if(this.top == 4){
+                    console.log($("#b")[0].getBoundingClientRect().y)
                 }
             }
 
             // 一次滚动后判断当前页面在第几页切换导航栏菜单底部边框
             this.qiehuan(this.top+1)
+            // 一次滚动后判断当前是否在第五页，执行滚动条事件
+            if(this.top == 4){
+                this.tiao2()
+            }
             // ——————任务结束—————
             // 0.2配置滚轮事件
             setTimeout(()=>{
@@ -648,6 +796,7 @@ export default {
     // 组件对象,data对象,虚拟DOM树加载完
     mounted(){
         window.onmousewheel = this.gundong
+        // this.i = 
     }
 }
 </script>
