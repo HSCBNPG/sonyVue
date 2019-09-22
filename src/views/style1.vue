@@ -155,8 +155,8 @@
                                 <li>RX0系列</li>
                             </ul>
                             <!-- 图片 -->
-                            <div id="a" class="images">
-                                <div id="b">
+                            <div id="fu" class="images">
+                                <div id="zi">
                                     <img src="../assets/sony_images/az_b01.jpg" alt="">
                                     <img src="../assets/sony_images/az_s02.jpg" alt="">
                                     <img src="../assets/sony_images/az_s03.jpg" alt="">
@@ -180,8 +180,10 @@
                                 </div>
                             </div>
                             <!-- 滚动条 -->
-                            <div class="tiao">
-                                <span :style="'top:'+tiao+'px;'"></span>
+                            <div id="tiao" class="tiao">
+                                <span :style="'top:'+tiao+'px;'">
+                                    <img src="../assets/sony_images/yueliang.png" alt="">
+                                </span>
                             </div>
                         </div>
                     </div>                  
@@ -209,7 +211,6 @@
     }
     .content5>div{
         width: 77%;
-        border: 1px solid red;
         height: 71.5%;
         box-sizing: border-box;
         transform: translateY(6%);
@@ -246,16 +247,20 @@
         height: 100%;
         position: absolute;
         right: -30px;
-        background: red;
+        background: #ffe05b;
         top:0px;
     }
     .tiao>span{
         position: absolute;
-        background: blue;
         display: block;
         width: 20px;
         height: 20px;
         transform: translateX(-50%);
+        transition: all .3s
+    }
+    .tiao>span>img{
+        position: relative;
+        left: -30%;
     }
     /* 导航菜单 */
     .daohangMenu{
@@ -646,12 +651,21 @@ export default {
                     }
                 }
             },
-            tiao:50,
-            v:null,   //初始距离
-            i:null,    //移动后距离
+            tiao:0,
+            v:null,   //父元素距离
+            i:null,    //子元素移动后距离
             tiao2(){
-                console.log(this.top);
-                this.v = $("#b")[0].getBoundingClientRect().y
+                // console.log($("#zi")[0].offsetHeight);
+                this.v = $("#fu")[0].getBoundingClientRect().y
+                this.i = $("#zi")[0].getBoundingClientRect().y
+                var fuH = $("#fu")[0].offsetHeight;
+                var ziH = $("#zi")[0].offsetHeight;
+                var tH = $("#tiao")[0].offsetHeight;
+                var cha = ziH - fuH
+                var x = tH/cha
+                // console.log(x)
+                var ch = this.i - this.v
+                this.tiao = -ch*x
             }
         }
     },
@@ -672,6 +686,7 @@ export default {
         // 菜单开关点击事件  0:关  1:开
         menuButton(n,e){
             function abc(e,v){
+                e.style.transition = "1s"
                 e.style.transform = "rotate(360deg)";
                 setTimeout(()=>{
                     e.style.transform = "rotate(0deg)";
@@ -684,7 +699,8 @@ export default {
             this.qiehuan(this.top+1)
         },
         hoverOff(e){
-            e.target.style.transform = "rotate(-90deg)";
+            e.target.style.transition = ".6s"
+            e.target.style.transform = "rotate(-180deg)";
         },
         hoverOn(e){
             e.target.style.transform = "rotate(0deg)";
@@ -765,7 +781,7 @@ export default {
                 }else 
                 // 如果当前在第五页
                 if(this.top == 4){
-                    console.log($("#b")[0].getBoundingClientRect().y)
+                    // console.log($("#b")[0].getBoundingClientRect().y)
                 }
             }
 
@@ -796,7 +812,6 @@ export default {
     // 组件对象,data对象,虚拟DOM树加载完
     mounted(){
         window.onmousewheel = this.gundong
-        // this.i = 
     }
 }
 </script>
