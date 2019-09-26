@@ -788,7 +788,7 @@ export default {
             // 一次滚动后判断当前页面在第几页切换导航栏菜单底部边框
             this.qiehuan(this.top+1)
             // 一次滚动后判断当前是否在第五页，执行滚动条事件
-            if(this.top == 4){
+            if(this.top == 4){  
                 this.tiao2()
             }
             // ——————任务结束—————

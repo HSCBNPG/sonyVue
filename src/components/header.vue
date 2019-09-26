@@ -60,21 +60,19 @@ export default {
     },
     // DOM树第一次形成，data中的数据替换完成后  自动执行——第二阶段
     mounted(){
-        // setTimeout(function(){
-            // 为引入的header标签绑定事件
-            $("#log_reg>span:first-child").click(function(){
-                $(".backg").addClass("active")
-                $("#login").addClass("active")
-            });
-            $("#login .close").click(function(){
-                $("#login").removeClass("active")
-                $(".backg").removeClass("active")
-            })
-            $("#reg_img").click(function(){
-                $("#login>div:first-child").removeClass("active")
-                $("#login>div:nth-child(2)")
-            })
-        // },1000)
+        // 为引入的header标签绑定事件
+        $("#log_reg>span:first-child").click(function(){
+            $(".backg").addClass("active")
+            $("#login").addClass("active")
+        });
+        $("#login .close").click(function(){
+            $("#login").removeClass("active")
+            $(".backg").removeClass("active")
+        })
+        $("#reg_img").click(function(){
+            $("#login>div:first-child").removeClass("active")
+            $("#login>div:nth-child(2)")
+        })
 
     }
 }

@@ -176,7 +176,7 @@ export default {
 		
 	},
 	created(){
-		setTimeout(function(){
+		
 			// 功能一: 滑块验证
     var move=document.getElementById("move");
     var div=move.getElementsByTagName("div");
@@ -248,7 +248,7 @@ export default {
             return ;
         }
         $.ajax({
-            url:`http://127.0.0.1:8088/login?uname=${uname}&upwd=${upwd}`,
+            url:`http://127.0.0.1:8081/login?uname=${uname}&upwd=${upwd}`,
             type:"get",
             data:{},
             success:function(res){
@@ -283,7 +283,6 @@ export default {
         $(".ipt_user")[0].value = "";
         $(".ipt_pwd")[0].value = "";
     }
-		},1000)
 	}
 }
 </script>
