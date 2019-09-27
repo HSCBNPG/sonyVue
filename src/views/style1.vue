@@ -1,6 +1,6 @@
 <template>
     <!-- 整体页面 overfloe:hidden-->
-    <div class="cont">
+    <div class="cont" ondragstart='return false;'>
         <!-- 超大页面 -->
         <div class="main" :style="top == 0?'top:0vh':top == 1?'top:-100vh':top == 2?'top:-200vh':top == 3?'top:-300vh':top == 4?'top:-400vh':''">
             <!-- 隐藏logo固定定位 -->
@@ -13,10 +13,9 @@
                 <div @click="changePage" @mouseenter="menuHover" data-left="2"><img src="../assets/sony_images/tMenu_icon02.png" alt="">&nbsp;黑卡家族</div>
                 <div @click="changePage" @mouseenter="menuHover" data-left="3"><img src="../assets/sony_images/tMenu_icon03.png" alt="">&nbsp;黑卡优势</div>
                 <div @click="changePage" @mouseenter="menuHover" data-left="4"><img src="../assets/sony_images/tMenu_icon04.png" alt="">&nbsp;实拍欣赏</div>
-                <div @click="changePage" @mouseenter="menuHover" data-left="5"><img src="../assets/sony_images/tMenu_icon05.png" alt="">&nbsp;影响课堂</div>
+                <div @click="changePage" @mouseenter="menuHover" data-left="5"><img src="../assets/sony_images/tMenu_icon05.png" alt="">&nbsp;影像课堂</div>
                 <img @click="menuButton(0,$event)" @mouseenter="hoverOff" @mouseleave="hoverOn" src="../assets/sony_images/Off1.png" alt="">
-                            <!-- #关 -->
-                <span :class="spanHover"></span>
+                <span :class="spanHover"></span><!-- #关 -->
             </div>
             <!-- 导航菜单开关按钮固定定位  #开 -->
             <div @click="menuButton(1)" class="menu" :style="top == 0?'color:#fff;':'color:#000;'">
@@ -28,6 +27,8 @@
                 <li v-show="top == 0">首页</li>
                 <li v-show="top == 1">黑卡家族</li>
                 <li v-show="top == 2">黑卡优势</li>
+                <li v-show="top == 3">实拍欣赏</li>
+                <li v-show="top == 4">影像课堂</li>
             </ul>
             <!-- 第一页小页面 相对定位-->
             <div class="page page1">
@@ -138,7 +139,6 @@
             </div>
             <!-- 第四页 -->
             <div class="page">
-
             </div>
             <!-- 第五页 -->
             <div class="page">
@@ -231,9 +231,6 @@
         width: 100%;
         height: 90%;
         overflow: auto;
-    }
-    .images>div{
-
     }
     .images::-webkit-scrollbar{
         width: 0px;
@@ -655,7 +652,6 @@ export default {
             v:null,   //父元素距离
             i:null,    //子元素移动后距离
             tiao2(){
-                // console.log($("#zi")[0].offsetHeight);
                 this.v = $("#fu")[0].getBoundingClientRect().y
                 this.i = $("#zi")[0].getBoundingClientRect().y
                 var fuH = $("#fu")[0].offsetHeight;
@@ -663,7 +659,6 @@ export default {
                 var tH = $("#tiao")[0].offsetHeight;
                 var cha = ziH - fuH
                 var x = tH/cha
-                // console.log(x)
                 var ch = this.i - this.v
                 this.tiao = -ch*x
             }
@@ -695,6 +690,7 @@ export default {
                     v.m=false;
                 },400)                
             }
+            // 是否调用函数abc关闭动画
             n ? this.m=true : abc(e.target,this)
             this.qiehuan(this.top+1)
         },
@@ -719,11 +715,12 @@ export default {
         gundong(e){
             // 0.1配置滚轮事件
             window.onmousewheel = null;
-            // console.log(e.wheelDelta) //120为向上，-120为向下
-
+            window.removeEventListener('DOMMouseScroll',this.gundong)
+            //120为向上，-120为向下 火狐和谷歌不同滚轮方向值不同保存的属性也不同
+            // console.log(e.wheelDelta || -e.detail)
             // —————任务开始—————
             // 1.判断是向上滚动还是向下滚动
-            if(e.wheelDelta>0){
+            if(e.wheelDelta || -e.detail >0){
                 // 2.向上滚动所执行的操作
                 // 4.判断是否在第一页内
                 if(this.top == 0){
@@ -731,7 +728,6 @@ export default {
                     // 6.如果焦点在后三个 2 3 4
                     if(this.a>1){
                       this.a--
-                      console.log(this.a)
                     }
                 }else{
                     // 6.不在第一页内执行的操作
@@ -741,8 +737,6 @@ export default {
                             this.top--
                         }else{
                             
-                            // console.log($("#a")[0].getBoundingClientRect())
-                            // console.log(this.v)
                         }
                     }else{
                         this.top--
@@ -784,17 +778,18 @@ export default {
                     // console.log($("#b")[0].getBoundingClientRect().y)
                 }
             }
-
             // 一次滚动后判断当前页面在第几页切换导航栏菜单底部边框
             this.qiehuan(this.top+1)
             // 一次滚动后判断当前是否在第五页，执行滚动条事件
             if(this.top == 4){  
                 this.tiao2()
             }
+            
             // ——————任务结束—————
             // 0.2配置滚轮事件
             setTimeout(()=>{
                 window.onmousewheel = this.gundong;
+                window.addEventListener('DOMMouseScroll', this.gundong);
             },300)
         },
         // 鼠标移入事件
@@ -812,6 +807,7 @@ export default {
     // 组件对象,data对象,虚拟DOM树加载完
     mounted(){
         window.onmousewheel = this.gundong
+        window.addEventListener('DOMMouseScroll', this.gundong);
     }
 }
 </script>
