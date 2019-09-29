@@ -1,8 +1,10 @@
 <template>
     <div>
-        <my-header></my-header>
-        <div class="fixed"  v-show="height>=900">
-            <my-header></my-header>
+        <div id="header-fu">
+            <my-header v-if="height<=900"></my-header>
+            <div class="fixed"  v-else>
+                <my-header></my-header>
+            </div>
         </div>
         <!-- 首页轮播图 -->
         <div id="swiper-container">
@@ -362,15 +364,15 @@
                     </div>
                     <div class="clearfix">
                         <span class="sp1 sp2"></span>
-                        <input class="ipt" type="text" placeholder="密码">
+                        <input class="ipt" type="password" placeholder="密码">
                     </div>
                     <div class="border-0 clearfix">
                         <label class="remem">
-                            <input type="checkbox" class="">记住用户名
+                            <input id="jizhu" checked type="checkbox">记住用户名
                         </label>
                         <a href="javascript:;" class="float-right ">忘记密码</a>
                     </div>
-                    <a class="d-block w-100 text-center mb-3" href="javascript:;">登录</a>
+                    <a @click="denglu" class="d-block w-100 text-center mb-3" href="javascript:;">登录</a>
                     <div class="bottom border-0">如果您的用户名密码无法登录，请联系 400-810-1228</div>
                 </div>
             </div>
@@ -426,7 +428,7 @@ export default {
                         if(juli <= 0){
                             clearInterval(timer)
                         }
-                    },10)                    
+                    },10)
                 }else{
                     var timer = setInterval(()=>{
                         window.scrollBy(0,-sudu*10)
@@ -440,7 +442,42 @@ export default {
             }
         }
     },
+    beforeUpdate(){
+    },
     methods:{
+        // 登录功能
+        denglu(){
+            var uname = $(".ipt")[0].value;
+            var upwd = $(".ipt")[1].value;
+            if(uname == "" || upwd == ""){
+                alert("请输入用户名或密码")
+                return;
+            }
+            this.axios.get("http://127.0.0.1:8081/user/log",{
+                params:{
+                    uname,
+                    upwd
+                }
+            }).then(result=>{
+                if(result.data.code == 1){
+                    sessionStorage.setItem("user",uname);
+                    sessionStorage.setItem("userimg",result.data.img);  //保存用户头像
+                    if($("#jizhu")[0].checked){
+                        localStorage.setItem("username",uname)       //永久保存用户名
+                    }
+                    this.$store.commit("setUserimg",sessionStorage.getItem("userimg")) //修改用户头像
+                    this.$store.commit("setLogStatus",true);     //修改全局登录状态
+                    console.log(this.$store.getters.getLogStatus)
+                    $(".ipt")[0].value = $(".ipt")[1].value = "";
+                    $("#login").removeClass("active")
+                    $(".backg").removeClass("active")
+                    alert("登陆成功")
+                }else{
+                    alert("账号或密码错误")
+                }
+            })
+        },
+        // 楼层跳转
         menuButton(a){
             var Hh = $("#header")[0].clientHeight;
             var Lh = $("#swiper-container")[0].clientHeight;
@@ -465,7 +502,10 @@ export default {
             this.height = document.body.scrollTop||document.documentElement.scrollTop;
             this.top = $("#MainB1")[0].getBoundingClientRect().y
         }
-
+        if(sessionStorage.getItem("user") != null){
+            this.$store.commit("setLogStatus",true);
+            this.$store.commit("setUserimg",sessionStorage.getItem("userimg"))
+        }
     }
 }
 </script>

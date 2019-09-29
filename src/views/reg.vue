@@ -22,50 +22,53 @@
 			<div class="w1210 clearfix">
 				<!-- 登陆 -->
 				<div class="log float-left dropup">
-					<div class="log-top dropup">
-						<p class="pt-3 pb-2 mb-4">会员登陆与注册</p>
-						<div class="dropup mb-4">
-							<input type="text" class="ipt ipt_user" placeholder="邮箱/用户名/手机">
-							<span class="del_input">×</span>
-						</div>
-						<div class="dropup mb-4">
-							<input type="password" class="ipt ipt_pwd" placeholder="密码">
-							<span class="del_input">×</span>
-						</div>
-						<!-- 滑动框 -->
-						<div id="move" class="alive">
-							<div class="bgcolor"></div>
-							<div class="lang slide">
-								<!-- <span class="iconfont icon-cs-xy-1" style="font-size:24px;"></span> -->
-								<svg class="icon" aria-hidden="true">
-									<use xlink:href="#icon-cs-xy-1"></use>
-								</svg>
+					<div v-show="a" >
+						<div class="log-top dropup">
+							<p class="pt-3 pb-2 mb-4">会员登陆与注册</p>
+							<div class="dropup mb-4">
+								<input type="text" class="ipt ipt_user" placeholder="邮箱/用户名/手机">
+								<span class="del_input">×</span>
 							</div>
-							<div class="txt">
-								<span ondragstart='return false' onselect="return false">请按住滑块，拖到最右边</span>
+							<div class="dropup mb-4">
+								<input type="password" class="ipt ipt_pwd" placeholder="密码">
+								<span class="del_input">×</span>
+							</div>
+							<!-- 滑动框 -->
+							<div id="move" class="alive">
+								<div class="bgcolor"></div>
+								<div class="lang slide">
+									<img id="icon" src="../assets/sony_images/youhua.png" alt="">
+								</div>
+								<div class="txt">
+									<span ondragstart='return false' onselect="return false">请按住滑块，拖到最右边</span>
+								</div>
+							</div>
+							<!-- 忘记密码 -->
+							<div class="text-right py-2">
+								<a href="javascript:;"  ondragstart='return false' onselect="return false" class="font14">忘记密码?</a>
+							</div>
+							<!-- 登录按钮 -->
+							<a href="javascript:;" ondragstart='return false' id="login_1" onselect="return false" class="a-btn">登陆</a>
+							<a @click="zhuce" href="javascript:;" class="a-btn">会员注册</a>
+						</div>
+						<div class="log-btm">
+							<div class="info">
+								<span class="font14">会员权益</span>
+								<a href="javascript:;" class="">
+									会员可享受更多活动优惠 赶快来看看>
+								</a>
+							</div>
+							<div class="help">
+								<span class="font14">帮助中心</span>
+								<a href="javascript:;">
+									Sony小助手在线帮你答题解忧？
+								</a>
 							</div>
 						</div>
-						<!-- 忘记密码 -->
-						<div class="text-right py-2">
-							<a href="javascript:;"  ondragstart='return false' onselect="return false" class="font14">忘记密码?</a>
-						</div>
-						<!-- 登录按钮 -->
-						<a href="javascript:;" ondragstart='return false' id="login_1" onselect="return false" class="a-btn">登陆</a>
-						<a href="javascript:;" class="a-btn">会员注册</a>
 					</div>
-					<div class="log-btm">
-						<div class="info">
-							<span class="font14">会员权益</span>
-							<a href="javascript:;" class="">
-								会员可享受更多活动优惠 赶快来看看>
-							</a>
-						</div>
-						<div class="help">
-							<span class="font14">帮助中心</span>
-							<a href="javascript:;">
-								Sony小助手在线帮你答题解忧？
-							</a>
-						</div>
+					<!-- 注册 -->
+					<div v-show="!a">
+						<vue-zhuce></vue-zhuce>
 					</div>
 				</div>
 				<!-- 登录区域右侧图片 -->
@@ -165,15 +168,22 @@
 </template>
 <style>
     @import url("../assets/css/reg.css");
-	/* ::-webkit-scrollbar {
-    width: 0px;
-    height: 0px;
-} */
 </style>
 <script>
+import vuezhuce from '../components/zhuce'
 export default {
+	components:{
+		"vue-zhuce":vuezhuce
+	},
+	data(){
+		return {
+			a : true
+		}
+	},
 	methods:{
-		
+		zhuce(){
+			this.a = false
+		}
 	},
 	mounted(){
 		// 功能一: 滑块验证
@@ -182,7 +192,6 @@ export default {
 		var lang=div[1];
 		var bgcolor=div[0];
 		var txt=div[2];
-		var icon = move.querySelector(".lang svg use");
 		var span = txt.getElementsByTagName("span")[0]
 		var curtain = txt.getElementsByTagName("div")[0]
 			// 滑块需要滑动的长度
@@ -203,11 +212,10 @@ export default {
 				}
 				if(left >= (Lengths-13)){
 					span.innerHTML = "验证通过";
-					icon.setAttribute("xlink:href","#icon-jiazai");
 					span.style.color = "white";
+					$("#icon").attr("src",["img/tongguo.png"])
 					lang.style.left = Lengths + "px";
 					bgcolor.style.width = Lengths + "px";
-					icon.setAttribute("xlink:href","#icon-chenggong");
 					lang.onmousedown = null;
 					window.onmousemove = null;
 					return ;

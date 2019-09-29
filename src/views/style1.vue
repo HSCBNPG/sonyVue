@@ -720,7 +720,7 @@ export default {
             // console.log(e.wheelDelta || -e.detail)
             // —————任务开始—————
             // 1.判断是向上滚动还是向下滚动
-            if(e.wheelDelta || -e.detail >0){
+            if((e.wheelDelta == 120) || -e.detail > 0){
                 // 2.向上滚动所执行的操作
                 // 4.判断是否在第一页内
                 if(this.top == 0){
@@ -792,6 +792,7 @@ export default {
                 window.addEventListener('DOMMouseScroll', this.gundong);
             },300)
         },
+
         // 鼠标移入事件
         yiru(num){
             // 修改a的值e.target.data

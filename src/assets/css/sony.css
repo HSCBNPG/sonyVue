@@ -19,7 +19,7 @@ input{
     outline:none;
     border:none;
 }
-
+#header-fu{height:65px;}
 /*首页轮播图*/
 #swiper-container{
     width:100%;
@@ -266,8 +266,9 @@ ul.font-s>li:not(nth-child){
 }
 .login_zones .pads input.ipt{
     display: block;
-    font-size:12px;
+    font-size:14px;
     float: left;
+    color: #000;
     width:254px;
     padding:15px 0 11px 15px;
 }

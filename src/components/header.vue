@@ -37,10 +37,13 @@
             <div>
                 <p>My Sony</p>
             </div>
-            <div id="log_reg">
-                <span>登录</span>    
-                <i>/</i>
-                <span><router-link to="reg">注册</router-link></span>
+            <div>
+                <div v-if="!$store.getters.getLogStatus" id="log_reg">
+                    <span @click="denglu">登录</span>
+                    <i>/</i>
+                    <span><router-link to="reg">注册</router-link></span>
+                </div>
+                <img @click="zhuxiao" class="userimg" v-else :src="$store.getters.getUserimg" alt="">
             </div>
         </div>
     </div>
@@ -50,8 +53,15 @@
 export default {
     // 事件函数
     methods:{
-        add(){
-
+        zhuxiao(){
+            sessionStorage.removeItem("user")
+            this.$store.commit("setLogStatus",false);
+        },
+        denglu(){
+            $(".backg").addClass("active")
+            $("#login").addClass("active")
+            // 将以记住的用户名填入
+            $(".ipt")[0].value = localStorage.getItem("username")
         }
     },
     // 组件创建完但并未挂载dom树并未替换data中的变量  自动执行——第一阶段
@@ -60,11 +70,6 @@ export default {
     },
     // DOM树第一次形成，data中的数据替换完成后  自动执行——第二阶段
     mounted(){
-        // 为引入的header标签绑定事件
-        $("#log_reg>span:first-child").click(function(){
-            $(".backg").addClass("active")
-            $("#login").addClass("active")
-        });
         $("#login .close").click(function(){
             $("#login").removeClass("active")
             $(".backg").removeClass("active")
@@ -73,11 +78,14 @@ export default {
             $("#login>div:first-child").removeClass("active")
             $("#login>div:nth-child(2)")
         })
-
     }
 }
 </script>
 <style scoped>
+.userimg{
+    width: 45px;
+    border-radius:50%;
+}
     /* 头部导航栏样式 */
 #header{
 	width:100%;
@@ -213,4 +221,5 @@ export default {
 #log_reg>span>a{
     color:#1fa8e2;
 }
+
 </style>
