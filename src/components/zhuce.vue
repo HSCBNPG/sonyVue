@@ -1,35 +1,48 @@
 <template>
     <div class="fu">
-        <div class="imgfu">
-            <!-- 需要更改父组件的数据 -->
-            <img src="../assets/sony_images/login.png" alt="">
-        </div>
         <p class="mb-3">会员注册</p>
         <div class="ipt-fu ipt1"><input id="uname" type="text" placeholder="输入用户名"><span @click="clearIpt">×</span></div>
         <div class="ipt-fu ipt2"><input id="email" type="text" placeholder="输入邮箱地址"><span @click="clearIpt">×</span></div>
         <div class="ipt-fu ipt3"><input id="upwd" type="text" placeholder="密码由6-16位字符组成"><span @click="clearIpt">×</span></div>
         <div class="ipt-fu ipt4"><input id="upwds" type="text" placeholder="再次输入密码"><span @click="clearIpt">×</span></div>
         <!-- 验证码 -->
-        <div>
-
+        <div class="suiji">
+            <input type="text" placeholder="验证码">
         </div>
+        <button @click="signIn" class="btn">注册</button>
         <div>
-            <label><input type="checkbox">我已阅读相关协议</label>
+            <label><input type="checkbox">我已阅读并同意《用户注册协议》</label>
         </div>
-        <button @click="signIn">立即注册</button>
     </div>
 </template>
 <style scoped>
+    .suiji{
+        width: 316px;
+        height: 40px;
+        border: 1px solid red;
+        margin: 10px auto;
+        clear: both;
+    }
+    .suiji>input{
+        width: 80px;
+        margin-right: 15px;
+        height: 40px;
+        border: 1px solid #ccc;
+        color: #262e39;
+        border-radius: 3px;
+        line-height: 38px;
+        padding: 0 10px;
+        outline: none;
+        float: left;
+    }
+    .btn{
+        color:#fff;
+        background-color:#4b95ff;
+        width: 316px;
+    }
     .fu{
         width: 350px;
-        height: 523px;
     }
-    .imgfu{
-        width: 100%;
-        height: 60px;
-        text-align: right;
-    }
-    .fu:hover img{transform:none;}
     .fu>p{
         font-size: 20px;
     }

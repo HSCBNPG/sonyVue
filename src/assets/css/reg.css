@@ -274,3 +274,8 @@ body{
     margin:0 auto;
     margin-top:20px;
 }
+.imgfu{
+    width: 100%;
+    height: 60px;
+    text-align: right;
+}

@@ -83,7 +83,7 @@ export default {
 </script>
 <style scoped>
 .userimg{
-    width: 45px;
+    width: 35px;
     border-radius:50%;
 }
     /* 头部导航栏样式 */

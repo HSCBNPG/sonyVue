@@ -68,6 +68,10 @@
 					</div>
 					<!-- 注册 -->
 					<div v-show="!a">
+					<div class="imgfu">
+            			<!-- 需要更改父组件的数据 -->
+            			<img @click="zhuce(0)" src="../assets/sony_images/login.png" alt="">
+        			</div>
 						<vue-zhuce></vue-zhuce>
 					</div>
 				</div>
@@ -181,11 +185,16 @@ export default {
 		}
 	},
 	methods:{
-		zhuce(){
-			this.a = false
+		zhuce(o){
+			if(o){
+				this.a = false
+			}else{
+				this.a = true;
+			}
 		}
 	},
 	mounted(){
+		window.onscroll = null;
 		// 功能一: 滑块验证
 		var move=document.getElementById("move");
 		var div=move.getElementsByTagName("div");
