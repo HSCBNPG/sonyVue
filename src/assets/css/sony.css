@@ -22,7 +22,8 @@ input{
 #header-fu{height:65px;}
 /*首页轮播图*/
 #swiper-container{
-    width:100%;
+    /* width:100%; */
+    min-width: 1210px;
     /* max-height:800px; */
     background-repeat: no-repeat;
     background-size:100% 100%;
@@ -211,7 +212,8 @@ ul.font-s>li:not(nth-child){
     background-position:0px center; 
 }
 #MainBMySony{
-    width:100%;
+    min-width: 1210px;
+    /* width:1220px; */
     height:1320px;
     border:1px solid red;
     background:#0a83d6;
@@ -373,6 +375,9 @@ ul.font-s>li:not(nth-child){
     right: 100px;
     top:65%;
     z-index: 999;
+}
+.floor-menus>ul>li>img{
+    cursor: pointer;
 }
 .floor-menus>ul>li{
     width: 50px;

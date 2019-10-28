@@ -12,14 +12,17 @@
             <div id="tbn">
                 <ul>
                     <li id="list_l1" class="clearfix">
-                        <a href="#">商品分类</a> 
+                        <a class="a" href="#">商品分类</a> 
                         <ul class="fenlei"></ul>
                     </li>
                     <li class="clearfix">
-                        <a href="#">网站导航</a>
+                        <a class="a" href="#">网站导航</a>
                     </li>
                     <li id="list_serch">
-                        <input type="text" id="serch" placeholder="真无线降噪耳机WF-1000XM3">
+                        <input @focus="hidden(1)" @blur="hidden(0)" v-model="content" type="text" id="serch" placeholder="真无线降噪耳机WF-1000XM3">
+                        <ul class="top10" @mouseenter="changeB(1)" @mouseleave="changeB(0)">
+                            <li class="citiao" @click="sousuo()" v-for="(item,index) of top10" :key="index"><a :href="'https://www.baidu.com/s?wd='+item" target="_blank">{{item}}</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -51,9 +54,39 @@
 </template>
 <script>
 export default {
+    data(){
+        return {
+            content: "",  //搜索框内容
+            top10: [],    //百度top10列表
+            b: 0,    //搜索列表显示/隐藏
+        }
+    },
     // 事件函数
     methods:{
-        zhuxiao(){
+        sousuo(e){
+            this.top10 = []
+        },
+        changeB(num){
+            this.b = num
+        },
+        hidden(bool){  //隐藏/显示搜索词条用
+            if(bool){
+                this.baidu()
+            }else{
+                if(this.b == 0){
+                    this.top10 = []
+                }
+            }
+        },
+        bbb(json){   //工具函数，通过调用vue中的函数传值vue中
+            console.log("我是vue的函数")
+            console.log(json)
+            this.top10.splice(0)
+            for(var i=0;i<json.s.length;i++){
+                this.top10.push(json.s[i])
+            }
+        },
+        zhuxiao(){    
             sessionStorage.removeItem("user")
             this.$store.commit("setLogStatus",false);
         },
@@ -62,11 +95,31 @@ export default {
             $("#login").addClass("active")
             // 将以记住的用户名填入
             $(".ipt")[0].value = localStorage.getItem("username")
+        },
+        baidu(){     //发送请求获取百度top10词条
+            if(this.content != ""){
+                $.ajax({
+                    url:`https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=${this.content}&json=1`,
+                    type:"get",
+                    dataType:"jsonp"
+                })
+            }else{
+                this.top10 = []
+            }
         }
+    },
+    watch:{   
+        content(){
+            this.baidu()
+        },
     },
     // 组件创建完但并未挂载dom树并未替换data中的变量  自动执行——第一阶段
     created(){
-
+        let vm = this
+        window.baidu = {}
+        window.baidu.sug = (json)=>{
+            vm.bbb(json)
+        }
     },
     // DOM树第一次形成，data中的数据替换完成后  自动执行——第二阶段
     mounted(){
@@ -82,19 +135,44 @@ export default {
 }
 </script>
 <style scoped>
+.top10>li{
+    background: #fff;
+    text-align: left !important;
+    color: #000;
+    width: 100%;
+    height: 26px;
+    line-height: 26px;
+    padding-left: 5px;
+}
+.top10>li:hover{background: #000;}
+.top10>li:hover>a{color: #fff;}
+.top10{
+    display: flex;
+    flex-direction: column;
+    background:transparent;
+    align-items: center;
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin: 2px 10px 0px 10px;
+    overflow: hidden;
+    z-index: 9;
+}
 .userimg{
     width: 35px;
     border-radius:50%;
 }
     /* 头部导航栏样式 */
 #header{
-	width:100%;
+    min-width: 1210px;
+	/* width:1210px; */
     background: #000000;
     color:white;
 }
 /*顶部导航栏内容区域*/
 #header_conten{
-	width:1210px;
+    min-width: 1210px;
+    /* width:1210px; */
+    background: #000000;
 	height:65px;
     margin:0 auto;
 }
@@ -118,7 +196,7 @@ export default {
     height:100%;
     margin-left:9%;
 }
-#tbn ul li a{
+#tbn ul li a.a{
     float:left;
     box-sizing:border-box;
     width:113px;
@@ -147,11 +225,13 @@ export default {
     clear:both;
 }
 /* 第一个二级列表 */
-#tbn>ul>li>a:hover{
+#tbn>ul>li>a.a:hover{
     background:white url(../assets/sony_images/dot_down_blue.jpg) no-repeat 90px center;
     color: #1fa8e2;
 }
 #tbn ul li{
+    display: flex;
+    flex-direction: column;
     float:left;
     text-align:center;
 }

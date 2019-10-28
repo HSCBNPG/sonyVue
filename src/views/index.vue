@@ -445,6 +445,14 @@ export default {
     beforeUpdate(){
     },
     methods:{
+        changeShow(e){
+            console.log(e.target)
+            if(e.target.className == "citiao"){
+                
+            }else{
+                this.$store.commit("setShow",1)
+            }
+        },
         // 登录功能
         denglu(){
             var uname = $(".ipt")[0].value;
