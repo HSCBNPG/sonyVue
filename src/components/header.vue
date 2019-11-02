@@ -19,9 +19,9 @@
                         <a class="a" href="#">网站导航</a>
                     </li>
                     <li id="list_serch">
-                        <input @focus="hidden(1)" @blur="hidden(0)" v-model="content" type="text" id="serch" placeholder="真无线降噪耳机WF-1000XM3">
-                        <ul class="top10" @mouseenter="changeB(1)" @mouseleave="changeB(0)">
-                            <li class="citiao" @click="sousuo()" v-for="(item,index) of top10" :key="index"><a :href="'https://www.baidu.com/s?wd='+item" target="_blank">{{item}}</a></li>
+                        <input @keydown.enter="search" @keydown="xuanding" @focus="hidden(1)" @blur="hidden(0)" v-model="content" type="text" id="serch" placeholder="真无线降噪耳机WF-1000XM3">
+                        <ul :style="`height: ${this.top10.length*28.5}px;`" class="top10" @mouseenter="changeB(1)" @mouseleave="changeB(0)">
+                            <li :class="citiao == index?'active':''" @click="sousuo()" v-for="(item,index) of top10" :key="index"><a :href="'https://www.baidu.com/s?wd='+item" target="_blank">{{item}}</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -59,14 +59,55 @@ export default {
             content: "",  //搜索框内容
             top10: [],    //百度top10列表
             b: 0,    //搜索列表显示/隐藏
+            citiao: -1
         }
     },
     // 事件函数
     methods:{
+        search(){
+            if (this.content){
+                if(this.citiao == -1){
+                    this.openPage(this.content)
+                }else{
+                    this.openPage(this.top10[this.citiao])
+                }
+            }
+        },
+        xuanding(e){
+            if(this.top10.length>0){
+                if(e.keyCode == 38){
+                    console.log("向上")
+                    if(this.citiao > 0){
+                        this.citiao--
+                    }else if(this.citiao <= 0){
+                        this.citiao = this.top10.length-1
+                    }
+                }else if(e.keyCode == 40){
+                    console.log("向下")
+                    if(this.citiao < this.top10.length-1 ){
+                        this.citiao++
+                    }else{
+                        this.citiao = 0
+                    }
+                }
+            }
+            if(e.keyCode == 27){
+                this.top10 = []
+            }
+            if(e.keyCode == 38 || e.keyCode == 40){
+                // 阻止事件默认行为
+                if(e.preventDefault) e.preventDefault();
+                else e.returnValue = false;
+            }
+        },
+        openPage(url){
+            window.open(`https://www.baidu.com/s?wd=${url}`,"_blank");
+            this.top10 = []
+        },
         sousuo(e){
             this.top10 = []
         },
-        changeB(num){
+        changeB(num){   //解决鼠标点击后，input失去焦点词条消失问题
             this.b = num
         },
         hidden(bool){  //隐藏/显示搜索词条用
@@ -140,21 +181,25 @@ export default {
     text-align: left !important;
     color: #000;
     width: 100%;
-    height: 26px;
-    line-height: 26px;
-    padding-left: 5px;
+    height: 28px;
+    line-height: 28px;
+    padding-left: 6px;
 }
-.top10>li:hover{background: #000;}
-.top10>li:hover>a{color: #fff;}
+.top10>li:not(:first-child){
+    border-top: .5px solid #ddd9d9;
+}
+.top10>li.active{background: #000;}
+.top10>li.active>a{color: #fff;}
 .top10{
     display: flex;
     flex-direction: column;
-    background:transparent;
+    background: #fff;
     align-items: center;
     border: 1px solid #000;
     border-radius: 5px;
     margin: 2px 10px 0px 10px;
     overflow: hidden;
+    transition:all .215s;
     z-index: 9;
 }
 .userimg{
